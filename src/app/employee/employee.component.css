@@ -1,0 +1,13 @@
+.inputClass{
+    width: 250px;
+    margin-left: 500px;
+    align-items: center;
+}
+
+input.ng-invalid{
+    border-left: solid 5px red;
+    
+}
+input.ng-valid{
+    border-left: solid 5px green;
+}
