@@ -27,9 +27,14 @@ export class ServiceService {
     return this._httpClient.get<Employee>(this.baseUrl+"GetEmployee/"+id);
   }
 
-  AddEmployee(e : Employee){
-    this._httpClient.post<Employee>(this.baseUrl+"AddEmployee/",e);
-     
+  AddEmployee(e: Employee){
+   console.log(e);
+   const data = JSON.stringify(e);
+   console.log(data);
+   const headers= new HttpHeaders({'content-type':'application/json'});
+   
+    var msg= this._httpClient.post(this.baseUrl+`AddEmployee/`,data,{headers}).toPromise();
+      
   }
 
 }

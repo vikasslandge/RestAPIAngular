@@ -11,15 +11,16 @@ export class EmployeeComponent  {
 
   employees=[];
   emp: Employee;
- AllEmployeeFlag=false;
- EmployeeFlag=false;
- AddEmployee= false;
-
- Reset(){
+  AllEmployeeFlag=false;
+  EmployeeFlag=false;
+  AddEmployee= false;
+  EditFlag=false;
+  Reset(){
    this.AllEmployeeFlag=false;
    this.EmployeeFlag=false;
-  this.AddEmployee=false;
- }
+    this.AddEmployee=false;
+    this.EditFlag=false;
+  }
   constructor(private service:ServiceService){}
 
  Choice(ch){
@@ -31,13 +32,20 @@ export class EmployeeComponent  {
             break;
       case 3 : this.AddEmployee=true;
             break;
+      case 4 : this.EditFlag = true;
+            break;      
    }
  }
 
  RegistrationForm = new FormGroup({
-  name: new FormControl("",[Validators.required]),
-  designation: new FormControl("",[Validators.required]),
-  salary: new FormControl("",[Validators.required]),
+  Name: new FormControl("",[Validators.required]),
+  Designation: new FormControl("",[Validators.required]),
+  Salary: new FormControl("",[Validators.required])
+});
+EditForm = new FormGroup({
+  Name: new FormControl(),
+  Designation: new FormControl(),
+  Salary: new FormControl()
 });
 
   AllEmployees(){
@@ -49,8 +57,16 @@ export class EmployeeComponent  {
      
   }
   AddEmploye( ){
-    
     this.service.AddEmployee(this.RegistrationForm.value);
+    
+  }
+  Edit(emp:Employee){
+    //console.log(e);
+    
+   this.EditForm.setValue(emp);
+   
+    this.Choice(4);
+    // this.servie.GetEmployee(e)
   }
   Register(){
     console.log(this.RegistrationForm.value);

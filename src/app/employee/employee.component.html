@@ -15,7 +15,7 @@
       <th>Salary</th>
     </thead>
     <tbody>
-      <tr *ngFor="let e of employees">
+      <tr *ngFor="let e of employees" (click)="Edit(e)">
         <td>{{e.Id}}</td>
         <td>{{e.Name}}</td>
         <td>{{e.Designation}}</td>
@@ -47,11 +47,24 @@
   <form [formGroup]="RegistrationForm" (submit)="AddEmploye()" >
     <br><br>
     <label >Name</label>
-    <input type="text" name="name" class="form-control  inputClass" formControlName="name"><br>
+    <input type="text"  class="form-control  inputClass" formControlName="Name"><br>
     <label >Designation</label>
-    <input type="text" name="designation" class="form-control  inputClass" formControlName="designation"><br>
+    <input type="text"  class="form-control  inputClass" formControlName="Designation"><br>
     <label >Salary</label>
-    <input type="text" name="salary" class="form-control  inputClass" formControlName="salary"><br>
+    <input type="text"   class="form-control  inputClass" formControlName="Salary"><br>
     <input type="submit" name="submit" [disabled]="!RegistrationForm.valid" class="btn btn-success">
+  </form>
+</div>
+<!--Edit employee form-->
+<div *ngIf="EditFlag">
+  <form [formGroup]="EditForm"  >
+    <br><br>
+    <label >Name</label>
+    <input type="text"  class="form-control  inputClass" formControlName="Name"><br>
+    <label >Designation</label>
+    <input type="text"  class="form-control  inputClass" formControlName="Designation"><br>
+    <label >Salary</label>
+    <input type="text"   class="form-control  inputClass" formControlName="Salary"><br>
+    <input type="submit" name="submit" class="btn btn-success">
   </form>
 </div>
